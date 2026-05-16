@@ -68,7 +68,7 @@ static void MX_TIM3_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define PWM_ARR (4199.0f)              // ï¿?????? MX_TIM1_Init ï¿??????ï¿??????
+#define PWM_ARR (4199.0f)              // ï¿½?????? MX_TIM1_Init ï¿½??????ï¿½??????
 #define TS_SEC  (0.1f)              // ??ï¿½æ¨£??ï¿½ï¿½?? 10 ms
 
 // ??ï¿½ç™¾??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½å¯¦??? PWM
@@ -187,9 +187,9 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-	target_rpm = 80.0f;
+	target_rpm = 100.0f;
 
-	 motor_pid.Kp = 35.0f;          // ??ˆå?é?™ç?„é?‹å?‹è©¦
+	 motor_pid.Kp = 35.0f;          // ??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½è©¦
 	 motor_pid.Ki = 5.0f;
 	 motor_pid.Kd = 0.0f;
 
@@ -234,7 +234,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_Encoder_Start(&htim3, TIM_CHANNEL_ALL);
-  // ??ï¿½çµ¦ï¿???????ï¿½ï¿½ï¼Œé¿??ï¿½å¡ä½ï¿½??200ms 90%ï¿??????
+  // ??ï¿½çµ¦ï¿½???????ï¿½ï¿½ï¼Œé¿??ï¿½å¡ä½ï¿½??200ms 90%ï¿½??????
   __HAL_TIM_SET_COUNTER(&htim3, 0);
   enc_last = 0;
   driver_enable();
@@ -567,7 +567,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
     	  pid_calc(&motor_pid);
 
-    	  motor_forward();   // ?–®?–¹??‘æ§??
+    	  motor_forward();   // ?ï¿½ï¿½?ï¿½ï¿½??ï¿½æ§??
     	  pwm_set((uint32_t)(motor_pid.total_out));
 
       }
